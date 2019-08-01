@@ -43,7 +43,7 @@ router.get("/:id", validateUserId, async (req, res) => {
   }
 });
 
-router.get("/:id/posts", async (req, res) => {
+router.get("/:id/posts", validateUserId, async (req, res) => {
   try {
     const id = req.params.id;
     const posts = await Users.getUserPosts(id);
@@ -54,7 +54,7 @@ router.get("/:id/posts", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", validateUserId, async (req, res) => {
   try {
     const id = req.params.id;
     user = await Users.remove(id);
@@ -65,7 +65,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", validateUserId, async (req, res) => {
   try {
     const id = req.params.id;
     const user = await Users.update(id, req.body);
