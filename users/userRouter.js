@@ -34,8 +34,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", validateUserId, async (req, res) => {
   try {
-    const id = req.params.id;
-    const user = await Users.getById(id);
+    const user = req.user;
 
     res.status(200).json(user);
   } catch (error) {
